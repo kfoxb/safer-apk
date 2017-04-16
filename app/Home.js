@@ -165,6 +165,10 @@ export default class HomeScreen extends Component {
       console.log(user);
       this.setState({user: user});
     })
+    .then(()=>{
+      FireAuth.googleLogin();
+      console.log('fireauth called');
+    })
     .then(() => {
       return fetch(`${endpoint}/`, {
       method: 'POST',
