@@ -142,12 +142,13 @@ renderFence(fence) {
               language: 'en' // language of the results
             }}
             styles={{
-              position: 'fixed',
-              display: 'block',
-              listView: {
-                position: 'absolute'
-              }
-            }}
+              description: {
+              fontWeight: 'bold',
+            },
+              predefinedPlacesDescription: {
+              color: '#1faadb',
+            },
+        }}
 
              // Will add a 'Current location' button at the top of the predefined places list
             
@@ -162,11 +163,11 @@ renderFence(fence) {
 
             debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
         />
+        </View>
           <Button
               title='Set this fence'
               onPress={() => this.makeFence(this.state.coordinates)}
           />
-        </View>
       </View>
     );
   }
