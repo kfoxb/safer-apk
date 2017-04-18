@@ -171,7 +171,15 @@ export default class HomeScreen extends Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.state.user.idToken}`
+        'Authorization': JSON.stringify({
+          id: this.state.user.id,
+          name: this.state.user.name,
+          email: this.state.user.email,
+          photo: this.state.user.photo,
+          idToken: this.state.user.idToken,
+          accessToken: this.state.user.accessToken,
+          phoneNumber: this.state.phoneNumber
+        })
       },
       body: JSON.stringify({phoneNumber: this.state.phoneNumber})
       })
