@@ -13,10 +13,6 @@ module.exports = (requestConfig) => {
       'Content-Type': 'application/json',
       'Authorization': JSON.stringify(GoogleSignin.currentUser())
     },
-    // transformRequest: [function (data) {
-    //   data = JSON.stringify(data);
-    //   return data;
-    // }]
   };
 
   console.log('this is request before being changed', request);
@@ -26,15 +22,6 @@ module.exports = (requestConfig) => {
   }
 
   console.log('this is request after being changed', request);
-
-  // if (requestConfig.method === 'post' || requestConfig.method === 'put') {
-  //   request.transformRequest = [function (data) {
-  //     data = JSON.stringify(data);
-  //     return data;
-  //   }];
-  // }
-
-  // console.log('this is request after being changed with transformRequest if applicable', request);
 
   return axios(request);
 };

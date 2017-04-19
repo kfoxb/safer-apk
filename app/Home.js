@@ -171,20 +171,6 @@ export default class HomeScreen extends Component {
       this.setState({user: user});
     })
     .then(() => {
-      // return fetch(`${endpoint}/`, {
-      // method: 'POST',
-      // headers: {
-      //   'Accept': 'application/json',
-      //   'Content-Type': 'application/json',
-      //   'Authorization': JSON.stringify({
-      //     id: this.state.user.id,
-      //     name: this.state.user.name,
-      //     email: this.state.user.email,
-      //     photo: this.state.user.photo,
-      //     idToken: this.state.user.idToken,
-      //     accessToken: this.state.user.accessToken,
-      //     phoneNumber: this.state.phoneNumber
-      //   })
       console.log('using AuthAxios');
       return AuthAxios({
         url: '/login',
