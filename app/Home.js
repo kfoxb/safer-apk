@@ -177,10 +177,7 @@ export default class HomeScreen extends Component {
         token: token,
         profile: profile,
         logged: true,
-      }, () => {
-        console.log(this.state);
       });
-      // console.log(token, profile);
     });
   }
 
