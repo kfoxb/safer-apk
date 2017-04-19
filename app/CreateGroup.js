@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CheckBox from 'react-native-checkbox';
 import { endpoint } from './endpoint.js';
 import { View, Text, StyleSheet, TextInput, ListView, Picker, Button } from 'react-native';
+import AuthAxios from './AuthAxios.js';
 
 export default class CreateGroup extends Component {
   constructor(props) {

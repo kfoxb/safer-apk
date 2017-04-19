@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { endpoint } from './endpoint.js';
 import { ListView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import AuthAxios from './AuthAxios.js';
 
 export default class GroupMap extends Component {
   constructor(props) {

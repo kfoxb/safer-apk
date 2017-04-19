@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Button, Text, Picker, Switch, StyleSheet } from 'react-native';
 import { endpoint } from './endpoint.js';
-
 import FriendMap from './FriendMap.js';
+import AuthAxios from './AuthAxios.js';
 
 export default class Settings extends Component {
   constructor(props) {

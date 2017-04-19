@@ -3,6 +3,7 @@ import {endpoint} from './endpoint.js';
 import Contacts from 'react-native-contacts';
 import AddFriendItem from './AddFriendItem.js';
 import { View, Text, StyleSheet, Button, ListView } from 'react-native';
+import AuthAxios from './AuthAxios.js';
 
 export default class AddFriendList extends Component {
   constructor(props) {

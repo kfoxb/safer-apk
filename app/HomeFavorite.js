@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { endpoint } from './endpoint.js';
 import { Button, View, Text, StyleSheet, ListView, TouchableOpacity } from 'react-native';
+import AuthAxios from './AuthAxios.js';
 
 export default class HomeFavorite extends Component {
   constructor(props) {

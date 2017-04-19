@@ -96,7 +96,6 @@ export default class HomeScreen extends Component {
     })
   }
 
-
   componentDidMount() {
     this._setupGoogleSignin();
 
@@ -180,7 +179,7 @@ export default class HomeScreen extends Component {
       })
     })
     .catch((err) => {
-      console.error('Sign in error: ', err);
+      console.log('Sign in error: ', err);
     })
     .done();
   }

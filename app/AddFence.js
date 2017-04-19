@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, Picker, ListView } from 'react-native';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {endpoint} from './endpoint.js';
+import AuthAxios from './AuthAxios.js';
 
 
 const Item = Picker.Item
