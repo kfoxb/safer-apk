@@ -171,7 +171,7 @@ export default class HomeScreen extends Component {
       this.setState({user: user});
     })
     .then(() => {
-      console.log('using AuthAxios');
+      
       return AuthAxios({
         url: '/login',
         method: 'post',
@@ -179,7 +179,7 @@ export default class HomeScreen extends Component {
       })
     })
     .then(() => {
-      console.log('AuthAxios worked');
+      
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
