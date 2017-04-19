@@ -6,6 +6,8 @@ import { endpoint, googleAuthWebClientId } from './endpoint.js';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import PushController from './FCM/PushController.js';
 import GeoFencing from 'react-native-geo-fencing';
+import AuthAxios from './AuthAxios.js';
+import axios from 'axios';
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -137,6 +139,9 @@ export default class HomeScreen extends Component {
         <View>
           <PushController onChangeToken={(token) => {this.setState({FCMToken: token})}}/>
           <HomeFavorite />
+          <TouchableOpacity onPress={() => {this._signOut()} }>
+            <Text>Log Out</Text>
+          </TouchableOpacity>
         </View>
       )
     }
@@ -166,23 +171,29 @@ export default class HomeScreen extends Component {
       this.setState({user: user});
     })
     .then(() => {
-      return fetch(`${endpoint}/`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': JSON.stringify({
-          id: this.state.user.id,
-          name: this.state.user.name,
-          email: this.state.user.email,
-          photo: this.state.user.photo,
-          idToken: this.state.user.idToken,
-          accessToken: this.state.user.accessToken,
-          phoneNumber: this.state.phoneNumber
-        })
-      },
-      body: JSON.stringify({phoneNumber: this.state.phoneNumber})
+      // return fetch(`${endpoint}/`, {
+      // method: 'POST',
+      // headers: {
+      //   'Accept': 'application/json',
+      //   'Content-Type': 'application/json',
+      //   'Authorization': JSON.stringify({
+      //     id: this.state.user.id,
+      //     name: this.state.user.name,
+      //     email: this.state.user.email,
+      //     photo: this.state.user.photo,
+      //     idToken: this.state.user.idToken,
+      //     accessToken: this.state.user.accessToken,
+      //     phoneNumber: this.state.phoneNumber
+      //   })
+      console.log('using AuthAxios');
+      return AuthAxios({
+        url: '/login',
+        method: 'post',
+        data: {phoneNumber: this.state.phoneNumber}
       })
+    })
+    .then(() => {
+      console.log('AuthAxios worked');
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
