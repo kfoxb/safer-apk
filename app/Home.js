@@ -171,15 +171,11 @@ export default class HomeScreen extends Component {
       this.setState({user: user});
     })
     .then(() => {
-      
       return AuthAxios({
         url: '/login',
         method: 'post',
         data: {phoneNumber: this.state.phoneNumber}
       })
-    })
-    .then(() => {
-      
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
