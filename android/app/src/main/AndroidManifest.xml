@@ -59,6 +59,39 @@
       </receiver>      
       <!-- FCM end -->
 
+      <!--Auth0 Lock-->
+      <activity
+        android:name="com.auth0.lock.LockActivity"
+        android:theme="@style/Lock.Theme"
+        android:screenOrientation="portrait"
+        android:launchMode="singleTask">
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"/>
+          <category android:name="android.intent.category.DEFAULT"/>
+          <category android:name="android.intent.category.BROWSABLE"/>
+          <data android:scheme="a0m1n1gyprchfx0j7mri2ot9pxx2xk5hyf" android:host="safer.auth0.com"/>
+        </intent-filter>
+      </activity>
+      <!--Auth0 Lock End-->
+      <!--Auth0 Lock Embedded WebView-->
+      <activity
+          android:name="com.auth0.identity.web.WebViewActivity"
+          android:theme="@style/Lock.Theme">
+      </activity>
+      <!--Auth0 Lock Embedded WebView End-->
+      <!--Auth0 Lock Passwordless-->
+      <activity
+          android:name="com.auth0.lock.passwordless.LockPasswordlessActivity"
+          android:theme="@style/Lock.Theme"
+          android:screenOrientation="portrait"
+          android:launchMode="singleTask">
+      </activity>
+      <activity
+          android:name="com.auth0.lock.passwordless.CountryCodeActivity"
+          android:theme="@style/Lock.Theme">
+      </activity>
+      <!--Auth0 Lock Passwordless End-->
+
     </application>
 
 </manifest>

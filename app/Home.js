@@ -6,6 +6,10 @@ import { endpoint, googleAuthWebClientId } from './endpoint.js';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import PushController from './FCM/PushController.js';
 import GeoFencing from 'react-native-geo-fencing';
+import Auth0Lock from 'react-native-lock';
+
+
+var lock = new Auth0Lock({clientId: 'm1N1gYprCHFx0J7mRI2ot9pXX2xk5Hyf', domain: 'safer.auth0.com', useBrowser: true});
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -17,7 +21,9 @@ export default class HomeScreen extends Component {
       phoneNumber: '',
       currentlyAt: 'Elsewhere'
     };
+    this._onShowLock = this._onShowLock.bind(this);
   };
+
 
   static navigationOptions = {
     title: 'Favorites'
@@ -108,14 +114,11 @@ export default class HomeScreen extends Component {
       return (
         <View>
           <Text style={{fontSize: 25}}>
-            Please enter your phone number
+            Please tap on 'Show Lock' to continue.
           </Text>
-          <TextInput
-            style={{fontSize: 25}}
-            onChangeText={(text) => this.setState( {phoneNumber: text} )}
-            // placeholder='Insert Group Name'
-            value={this.state.text}
-          />
+          <TouchableOpacity onPress={this._onShowLock}>
+            <Text>Show Lock</Text>
+          </TouchableOpacity>
         </View>
       )
     }
@@ -157,6 +160,28 @@ export default class HomeScreen extends Component {
     catch(err) {
       console.log("Play services error", err.code, err.message);
     }
+  }
+
+  _onShowLock() {
+    lock.show({
+      closable: true,
+      authParams: {
+        scope: "openid email",
+      },
+    }, (err, profile, token) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      this.setState({
+        token: token,
+        profile: profile,
+        logged: true,
+      }, () => {
+        console.log(this.state);
+      });
+      // console.log(token, profile);
+    });
   }
 
   _signIn() {

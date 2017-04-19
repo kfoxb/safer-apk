@@ -116,8 +116,13 @@ android {
             }
         }
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
 }
 dependencies {
+    compile project(':react-native-lock')
     compile (project(':react-native-fcm')) {
         exclude group: "com.google.firebase"
     } // FCM

@@ -3,6 +3,7 @@ package com.safer;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.auth0.lock.react.LockReactPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.react.ReactNativeHost;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new LockReactPackage(),
           new FIRMessagingPackage(),
           new ReactNativeContacts(),
           new GeoFencingPackage(),
