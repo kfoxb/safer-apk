@@ -23,19 +23,16 @@ export default class AllFriendsList extends Component {
     AuthAxios({
       url: '/api/friends'
     })
-      .then(function(response) {
-        return response.json();
-      })
-      .then((friends) => {
-        this.setState({
-          friends: this.state.friends.cloneWithRows(friends),
-          loaded: true
-        });
-      })
-      .catch((error) => {
-        console.log('There was an error in fetching your data: ', error);
-        return error;
+    .then(({data}) => {
+      this.setState({
+        friends: this.state.friends.cloneWithRows(data),
+        loaded: true
       });
+    })
+    .catch((error) => {
+      console.log('There was an error in fetching your data: ', error);
+      return error;
+    });
   }
 
   static navigationOptions = ({navigation}) => ({
