@@ -49,14 +49,19 @@ export default class AddFriendList extends Component {
               friends.push(newFriend);
             }
           });
-          fetch(`${endpoint}/api/contacts`, {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({friends: friends})
-          })
+          // fetch(`${endpoint}/api/contacts`, {
+          //   method: 'POST',
+          //   headers: {
+          //     'Accept': 'application/json',
+          //     'Content-Type': 'application/json',
+          //   },
+          //   body: JSON.stringify({friends: friends})
+          // })
+            AuthAxios({
+              url: '/api/contacts',
+              method: 'post',
+              data: {friends: friends}
+            })
             .then(function(response) {
               return response.json();
             })
