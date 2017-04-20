@@ -23,14 +23,6 @@ export default class AddFence extends React.Component {
   };
 
   componentDidMount () {
-    console.log('component mounted')
-    // fetch(`${endpoint}/api/labels/?id=${this.state.user}`, {
-    //   method: 'GET',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
     AuthAxios({
       url: `/api/labels/?id=${this.state.user}`
     })
@@ -38,7 +30,6 @@ export default class AddFence extends React.Component {
       return response.json()
     })
     .then((fences) => {
-      console.log(fences);
       this.setState({fences: this.state.fences.cloneWithRows(fences)});
 
     })
@@ -77,16 +68,7 @@ export default class AddFence extends React.Component {
 
   fence.label = this.state.label;
   fence.user = this.state.user;
-  console.log(fence);
 
-// fetch(`${endpoint}/api/labels`, {
-//   method: 'POST',
-//   body: JSON.stringify(fence),
-//   headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json'
-//   }
-// })
   AuthAxios({
     url: '/api/labels',
     method: 'post',

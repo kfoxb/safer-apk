@@ -18,8 +18,6 @@ export default class AllFriendsList extends Component {
   };
 
   componentWillMount() {
-    console.log("in component will mount in all friends list")
-    // fetch(`${endpoint}/api/friends`)
     AuthAxios({
       url: '/api/friends'
     })
