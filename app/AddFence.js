@@ -24,12 +24,15 @@ export default class AddFence extends React.Component {
 
   componentDidMount () {
     console.log('component mounted')
-    fetch(`${endpoint}/api/labels/?id=${this.state.user}`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+    // fetch(`${endpoint}/api/labels/?id=${this.state.user}`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    AuthAxios({
+      url: `/api/labels/?id=${this.state.user}`
     })
     .then(function (response) {
       return response.json()
@@ -76,14 +79,19 @@ export default class AddFence extends React.Component {
   fence.user = this.state.user;
   console.log(fence);
 
-fetch(`${endpoint}/api/labels`, {
-  method: 'POST',
-  body: JSON.stringify(fence),
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-})
+// fetch(`${endpoint}/api/labels`, {
+//   method: 'POST',
+//   body: JSON.stringify(fence),
+//   headers: {
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json'
+//   }
+// })
+  AuthAxios({
+    url: '/api/labels',
+    method: 'post',
+    data: fence
+  })
   .then(function (response) {
     alert('Fence created!');
   })
