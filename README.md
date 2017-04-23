@@ -27,9 +27,7 @@
 
 ## Requirements
 
-- expo ^15.0.2
-- react ~15.4.0
-- react-native [link to React Native Github](https://github.com/exponent/react-native/archive/sdk-15.0.0.tar.gz)
+- [react-native-cli](https://www.npmjs.com/package/react-native-cli)
 
 ## Development
 
@@ -52,6 +50,42 @@ View the project roadmap [here](https://drive.google.com/open?id=1zswwIFLl2TnROU
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## Troubleshooting
+
+- If you get something similar to this error, specifically with 'default' not found:
+```sh
+A problem occurred configuring project ':app'.
+> Could not resolve all dependencies for configuration ':app:_debugApk'.
+   > Configuration with name 'default' not found.
+```
+then you should check your android/settings.gradle file for a node_module that is not installed. All react native modules that are listed there should look something like this:
+```sh
+project(':react-native-fcm').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fcm/android')
+```
+follow the path listed as the last argument to new File and make sure it's installed for every project in settings.gradle.
+
+- If you get an error about naming collisions, similar to this:
+```sh
+Failed to build DependencyGraph: @providesModule naming collision:
+  Duplicate module name: react-native-vector-icons
+  Paths: /Users/chandlervdw/Repos/Relay/mobile/node_modules/react-native/local-cli/rnpm/core/test/fixtures/files/package.json collides with /Users/chandlervdw/Repos/Relay/mobile/node_modules/react-native/Libraries/Animated/release/package.json
+
+This error is caused by a @providesModule declaration with the same name accross two different files.
+Error: @providesModule naming collision:
+  Duplicate module name: react-native-vector-icons
+  Paths: /Users/chandlervdw/Repos/Relay/mobile/node_modules/react-native/local-cli/rnpm/core/test/fixtures/files/package.json collides with /Users/chandlervdw/Repos/Relay/mobile/node_modules/react-native/Libraries/Animated/release/package.json
+
+This error is caused by a @providesModule declaration with the same name accross two different files.
+    at HasteMap._updateHasteMap (/Users/chandlervdw/Repos/Relay/mobile/node_modules/node-haste/lib/DependencyGraph/HasteMap.js:162:15)
+    at /Users/chandlervdw/Repos/Relay/mobile/node_modules/node-haste/lib/DependencyGraph/HasteMap.js:140:25
+```
+Then you need to delete your npm cache inside your home directory:
+```sh
+rm -rf ~/.npm
+```
+Then run React Native's packager with the --reset-cache option:
+```sh
+npm start --reset-cache
+```
 
 - If you're not using an emulator, make sure wifi is on and you're connected to the same network.
 
