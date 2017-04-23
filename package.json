@@ -7,15 +7,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "^0.16.1",
+    "axios": "0.16.1",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.2",
-    "react-native-checkbox": "^1.1.0",
-    "react-native-contacts": "^0.8.1",
-    "react-native-fcm": "^6.2.1",
-    "react-native-google-places-autocomplete": "^1.2.11",
-    "react-native-google-signin": "^0.10.0",
-    "react-native-maps": "^0.14.0",
+    "react-native-checkbox": "1.1.0",
+    "react-native-contacts": "0.8.1",
+    "react-native-fcm": "6.2.3",
+    "react-native-geo-fencing": "0.1.0",
+    "react-native-google-places-autocomplete": "1.2.11",
+    "react-native-google-signin": "0.10.0",
+    "react-native-maps": "0.14.0",
     "react-navigation": "git+https://github.com/react-community/react-navigation.git#7165efce02a60eecc41813fe5e030883996671ec"
   },
   "devDependencies": {
