@@ -27,6 +27,7 @@
 
 ## Requirements
 
+- [node > 7.6.0](https://nodejs.org)
 - [react-native-cli](https://www.npmjs.com/package/react-native-cli)
 
 ## Development
