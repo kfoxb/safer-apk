@@ -144,6 +144,9 @@ export default class FriendMap extends Component {
     if( data.currentLabel === 'Bar' ) { path = require('./Image/bar.png') };
     if( data.currentLabel === 'Gym' ) { path = require('./Image/gym.png') };
     if( data.currentLabel === 'Elsewhere' ) { path = require('./Image/elsewhere.png') };
+    var updatedAt = new Date(Date.parse(data.updatedAt));
+    var current = new Date();
+    var lastUpdated = Math.floor((current - updatedAt) / 1000 / 60);
     return (
       <View style={styles.friendMapContainer}>
         <Text style={styles.friendMapText}>{data.first} checked in at:</Text> 
@@ -151,7 +154,7 @@ export default class FriendMap extends Component {
           source={path}
           style={styles.labelImage}
         />
-        <Text style={styles.friendMapText}>{data.currentLabel} 5 min ago</Text>
+        <Text style={styles.friendMapText}>{data.currentLabel} {lastUpdated} min ago</Text>
       </View>
     );
   }
@@ -167,6 +170,10 @@ export default class FriendMap extends Component {
   }
 
   renderMapView(data) {
+    var updatedAt = new Date(Date.parse(data.updatedAt));
+    var current = new Date();
+    var lastUpdated = Math.floor((current - updatedAt) / 1000 / 60);
+    lastUpdated += ' min ago';
     return (
       <View style={styles.mapContainer}>
         <MapView
@@ -180,7 +187,7 @@ export default class FriendMap extends Component {
         >
           <MapView.Marker 
             title={data.currentLabel}
-            description='12 min ago'
+            description={lastUpdated}
             coordinate={{
              latitude: data.lat,
              longitude: data.long
