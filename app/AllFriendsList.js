@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Contacts from 'react-native-contacts';
 import { View, Text, StyleSheet, Button, ListView, TouchableOpacity } from 'react-native';
 import AuthAxios from './AuthAxios.js';
+import PushController from './FCM/PushController.js';
 import styles from './styles.js';
 
 export default class AllFriendsList extends Component {
@@ -15,9 +16,22 @@ export default class AllFriendsList extends Component {
       loaded: false,
       privacy: '',
     };
+    this.getFriends = this.getFriends.bind(this);
   };
 
+  static navigationOptions = ({navigation}) => ({
+    title: 'Friends'
+  });
+
   componentWillMount() {
+    this.getFriends();
+  }
+
+  newFriendRequest() {
+    this.getFriends();
+  }
+
+  getFriends() {
     AuthAxios({
       url: '/api/friends'
     })
@@ -33,10 +47,6 @@ export default class AllFriendsList extends Component {
     });
   }
 
-  static navigationOptions = ({navigation}) => ({
-    title: 'Friends'
-  });
-
   render() {
     const params = this.props.navigation.state.params;
 
@@ -46,6 +56,7 @@ export default class AllFriendsList extends Component {
 
     return (
       <View style={styles.container}>
+        <PushController friendRequest={this.newFriendRequest}/>
         <Text>Loading Friends...</Text>
       </View>
     );

@@ -7,6 +7,9 @@ import AuthAxios from '../AuthAxios.js';
 export default class PushController extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      friendRequest: props.friendRequest
+    };
   };
 
   componentDidMount() {
@@ -44,6 +47,7 @@ export default class PushController extends Component {
   showLocalNotification(notif) {
     console.log('notification: ', notif);
     if (notif.friendRequest === 'true') {
+      this.state.friendRequest();
     }
     FCM.presentLocalNotification({
       title: notif.title,

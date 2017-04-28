@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, View, Text, StyleSheet, ListView, TouchableOpacity } from 'react-native';
 
-import PushController from './FCM/PushController.js';
 import AuthAxios from './AuthAxios.js';
 import styles from './styles.js';
 
@@ -34,7 +33,6 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <PushController />
         <ListView
           enableEmptySections={true}
           dataSource={this.state.members}
