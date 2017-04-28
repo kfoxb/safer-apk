@@ -10,6 +10,7 @@ export default class PushController extends Component {
     this.state = {
       friendRequest: props.friendRequest
     };
+    console.log(this.state);
   };
 
   componentDidMount() {
@@ -45,7 +46,6 @@ export default class PushController extends Component {
   };
 
   showLocalNotification(notif) {
-    console.log('notification: ', notif);
     if (notif.friendRequest === 'true') {
       this.state.friendRequest();
     }

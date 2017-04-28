@@ -17,6 +17,7 @@ export default class AllFriendsList extends Component {
       privacy: '',
     };
     this.getFriends = this.getFriends.bind(this);
+    this.newFriendRequest = this.newFriendRequest.bind(this);
   };
 
   static navigationOptions = ({navigation}) => ({
