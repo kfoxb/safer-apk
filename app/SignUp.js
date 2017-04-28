@@ -30,9 +30,6 @@ export default class SignUp extends Component {
       method: 'put',
       data: location
     })
-    .then(() => {
-      console.log('location updated');
-    })
     .catch((err) => {
       console.log('location failed to update: ', err);
     });
@@ -49,7 +46,6 @@ export default class SignUp extends Component {
     })
     .then(({data}) => {
       this.setState({dbUser: data});
-      console.log('new user? ', data.created, data);
       if (data.created === false) {
         navigate('HomePageTabs');
       }
