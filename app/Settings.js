@@ -9,7 +9,7 @@ export default class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'gps', //TODO: set this to the privacy setting grabbed from the sql database
+      selected: '', //TODO: set this to the privacy setting grabbed from the sql database
       incognito: false,
       error: false
     };
@@ -20,6 +20,18 @@ export default class Settings extends Component {
   static navigationOptions = {
     title: 'Settings'
   };
+
+  componentWillMount() {
+    AuthAxios({
+      url: '/api/user'
+    })
+    .then(({data}) => {
+      this.setState({selected: data.defaultPrivacy});
+    })
+    .catch((err) => {
+      this.setState({error: true});
+    })
+  }
 
   pickerChange(privacySetting) {
     AuthAxios({
@@ -106,7 +118,7 @@ export default class Settings extends Component {
           </View>
         </TouchableOpacity>
         {this.state.error &&
-          (<Text>There was an error updating your privacy settings. Please try again later.</Text>)}
+          (<Text>There was an error updating or retrieving your privacy settings. Please try again later.</Text>)}
           
       </View>
     )
