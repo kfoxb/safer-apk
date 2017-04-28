@@ -22,7 +22,6 @@ export default class GroupsList extends Component {
   }
 
   componentWillUpdate () {
-    console.log('in componentWillUpdate');
     var params = this.props.navigation.state.params;
     if (params) {
       if (params.newGroup) {

@@ -21,6 +21,18 @@ export default class AddFence extends Component {
   };
 
   componentDidMount () {
+    this.getFences();
+  }
+
+  componentWillUpdate () {
+    if (this.state.newFence) {
+      console.log('about to get new fences');
+      this.getFences();
+      this.setState({newFence: false});
+    }
+  }
+
+  getFences() {
     AuthAxios({
       url: `/api/labels/`
     })
@@ -31,7 +43,7 @@ export default class AddFence extends Component {
     })
     .catch(function (error) {
       console.log('error retrieving current fences', error)
-    })
+    })    
   }
 
   onValueChange (label) {
@@ -65,7 +77,8 @@ export default class AddFence extends Component {
       if (params && params.SignUp) {
         navigate('AddFriend', params);
       }
-    })
+      this.setState({newFence: true}, () => this.componentWillUpdate());
+    });
   };
 
   renderFence(fence) {
