@@ -36,6 +36,7 @@ export default class HomeScreen extends Component {
       <View style={styles.container}>
         <PushController />
         <ListView
+          enableEmptySections={true}
           dataSource={this.state.members}
           style={styles.listView}
           renderRow={(rowData) => this.renderMembers(rowData) }

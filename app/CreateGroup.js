@@ -53,7 +53,7 @@ export default class CreateGroup extends Component {
         alert('There was a problem creating your group')
       })
       const { navigate } = this.props.navigation;
-      navigate('GroupsList');      
+      navigate('GroupsList', {newGroup: true});      
     }
   }
 
@@ -105,6 +105,7 @@ export default class CreateGroup extends Component {
           </Picker>
           <Text style={styles.createGroupText}>Members:</Text>
           <ListView
+            enableEmptySections={true}
             dataSource={this.state.friends}
             style={styles.listView}
             renderRow={(rowData) => (

@@ -101,6 +101,7 @@ export default class AddFriendList extends Component {
   renderContactList() {
     return (
       <ListView
+        enableEmptySections={true}
         dataSource={this.state.friends}
         renderRow={(rowData) => <AddFriendItem friend={rowData} /> }
         style={styles.listView}

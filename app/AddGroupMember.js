@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListView, View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import AuthAxios from './AuthAxios.js';
 import styles from './styles.js';
 

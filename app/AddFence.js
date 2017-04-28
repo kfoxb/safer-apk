@@ -157,6 +157,7 @@ export default class AddFence extends Component {
         </View>
         <View>
           <ListView
+            enableEmptySections={true}
             dataSource={this.state.fences}
             renderRow={this.renderFence}
             style={styles.listView}

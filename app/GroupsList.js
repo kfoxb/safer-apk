@@ -13,7 +13,26 @@ export default class GroupsList extends Component {
     };
   }
 
+  static navigationOptions = {
+    title: 'Groups'
+  };
+
   componentWillMount () {
+    this.getGroups();
+  }
+
+  componentWillUpdate () {
+    console.log('in componentWillUpdate');
+    var params = this.props.navigation.state.params;
+    if (params) {
+      if (params.newGroup) {
+        this.getGroups();
+        params.newGroup = false;
+      }
+    }
+  }
+
+  getGroups() {
     AuthAxios({
       url: `/api/groups`
     })
@@ -25,15 +44,10 @@ export default class GroupsList extends Component {
     })
     .catch(err => {
       console.log('There was an error in getting groups', err)
-    })
+    })    
   }
 
-  static navigationOptions = {
-    title: 'Groups'
-  };
-
   render() {
-    const params = this.props.navigation.state.params;
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
@@ -47,6 +61,7 @@ export default class GroupsList extends Component {
           </View>
         </TouchableOpacity>
         <ListView
+          enableEmptySections={true}
           style={styles.listView}
           dataSource={this.state.groups}
           renderRow={(rowData) => (

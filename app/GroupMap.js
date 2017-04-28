@@ -149,6 +149,7 @@ export default class GroupMap extends Component {
   renderNoChangeList() {
     return (
       <ListView
+        enableEmptySections={true}
         dataSource={this.state.members}
         renderRow={(rowData) => this.renderMembers(rowData) }
         style={styles.listView}

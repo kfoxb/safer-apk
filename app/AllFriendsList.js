@@ -54,6 +54,7 @@ export default class AllFriendsList extends Component {
   renderContactList() {
     return (
       <ListView
+        enableEmptySections={true}
         dataSource={this.state.friends}
         renderRow={(rowData) => this.renderContacts(rowData)}
         style={styles.listView}

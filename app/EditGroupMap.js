@@ -37,11 +37,13 @@ export default class EditGroupMap extends Component {
     return (
       <View>
         <ListView
+          enableEmptySections={true}
           dataSource={this.props.members}
           renderRow={rowData => <DeleteGroupMember data={rowData} toDelete={this.props.toDelete} />}
           style={styles.listView}
         />
         <ListView
+          enableEmptySections={true}
           dataSource={this.state.nonMembers}
           renderRow={rowData => <AddGroupMember data={rowData} toAdd={this.props.toAdd} />}
           style={styles.listView}
