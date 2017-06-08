@@ -3,6 +3,8 @@ import { View, Text, Button, TextInput, TouchableOpacity, StyleSheet, Image } fr
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import AuthAxios from './AuthAxios.js';
 import styles from './styles.js';
+import axios from 'axios';
+import { endpoint } from './endpoint.js';
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -39,13 +41,16 @@ export default class SignUp extends Component {
     const { navigate } = this.props.navigation;
     GoogleSignin.signIn()
     .then((user) => {
-      this.setState({user: user});
-      return AuthAxios({
-        url: '/api/user'
+      // this.setState({user: user});
+      return axios({
+        method: 'post',
+        baseURL: endpoint,
+        url: '/api/signin',
+        data: {token: user.idToken}
       })
     })
     .then(({data}) => {
-      this.setState({dbUser: data});
+      this.setState({user: data});
       if (data.created === false) {
         navigate('HomePageTabs');
       }
